@@ -1,30 +1,31 @@
-import React from 'react';
-import { connect } from 'alt-react'
-import DummyStore from 'stores/dummyStore';
-import DummyActions from 'actions/dummyActions';
+import React, { Component, PropTypes } from 'react'
 
-@connect
-class Example extends React.Component {
-  listenTo() {
-    return [DummyStore];
-  }
-
-  getProps() {
-    return {name: DummyStore.getName()};
-  }
+class Example extends Component {
+  //constructor(props, context) {
+  //  super(props, context)
+  //  this.name = ''
+  //}
 
   render() {
+    const {name} = this.props;
     return (
       <div>
-        <input type="text" value={this.props.name} onChange={this.onChange}/>
-        <h1>It works: {this.props.name}</h1>
+        <input type="text" value={name} onChange={this.onChange}/>
+
+        <h1>It works: {name}</h1>
       </div>
     );
   }
 
   onChange = evt => {
-    DummyActions.updateName(evt.target.value);
+    this.props.setName(evt.target.value);
   }
+
 }
+
+Example.propTypes = {
+  name: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired
+};
 
 export default Example;
