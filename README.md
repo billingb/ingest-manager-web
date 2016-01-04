@@ -1,2 +1,1 @@
-# ingest-manager-web
-Web interface to the NCEI ingest-manager application
+Playing with React and Redux
